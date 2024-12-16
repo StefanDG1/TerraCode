@@ -31,5 +31,5 @@ variable "az2" {
 variable "public_key_path" {
   description = "Path to the SSH public key file"
   type        = string
-  default     = "~/.ssh/terraform_key.pub"
+  default     = "./terraform_key.pub"
 }
