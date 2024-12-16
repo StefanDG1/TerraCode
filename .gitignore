@@ -1,0 +1,42 @@
+# Terraform local state files
+*.tfstate
+*.tfstate.backup
+
+# Crash log files
+crash.log
+
+# Terraform variable files that you might not want in version control
+*.tfvars
+
+# Ignore Terraform plan output files
+*.tfplan
+
+# Directory where Terraform stores modules, providers, etc.
+.terraform/
+
+# Ignore Terraform lock file if you prefer (it's often recommended to keep the lock file though)
+#.terraform.lock.hcl
+
+# Python cache and virtual environment directories
+__pycache__/
+*.pyc
+env/
+venv/
+
+# Logs and temp files
+nohup.out
+*.log
+
+# AWS credentials files (if any)
+.aws/
+credentials.tfvars
+credentials.tfvars.json
+
+# Any local IDE or OS-specific files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# If you have lambda_function.zip or other build artifacts, ignore them if they're large
+lambda_function.zip
