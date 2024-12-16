@@ -1,27 +1,32 @@
 pipeline {
     agent any
+    environment {
+        AWS_DEFAULT_REGION = "eu-west-1"
+    }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/yourusername/your-repo.git'
+                git branch: 'master', url: 'https://github.com/StefanDG1/TerraCode.git'
             }
         }
-        stage('Terraform Init') {
+        stage('Init') {
             steps {
                 sh 'terraform init'
             }
         }
-        stage('Terraform Plan') {
+        stage('Plan') {
             steps {
-                sh 'terraform plan'
+                withCredentials([usernamePassword(credentialsId: 'aws-creds', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    sh 'terraform plan'
+                }
             }
         }
-        stage('Terraform Apply') {
-            when {
-              branch 'main'
-            }
+        stage('Apply') {
+            when { branch 'master' }
             steps {
-                sh 'terraform apply -auto-approve'
+                withCredentials([usernamePassword(credentialsId: 'aws-creds', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
