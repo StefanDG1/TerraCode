@@ -15,7 +15,7 @@ provider "aws" {
 }
 
 ### 1. Networking (VPC, Subnets, etc.)
-### jen
+### jenkins testing
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
   tags = {
